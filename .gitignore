@@ -1,0 +1,21 @@
+# Node modules
+node_modules
+
+# Environment variables
+.env
+
+# Coverage report
+.nyc_output
+coverage/lcov-report/*
+
+# The development sqlite file
+database/*.sqlite
+
+# DS store
+.DS_store
+
+# Eslint
+.eslintcache
+
+# Server logs
+*.log

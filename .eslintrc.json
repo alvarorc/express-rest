@@ -1,0 +1,28 @@
+{
+  "extends": ["strongloop"],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2017,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "rules": {
+    "object-curly-spacing": ["error", "always"],
+    "max-len": [2, 120, 8],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "always",
+        "asyncArrow": "always"
+      }
+    ],
+    "camelcase": "off",
+    "strict": "off"
+  }
+}

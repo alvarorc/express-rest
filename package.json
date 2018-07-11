@@ -1,0 +1,51 @@
+{
+  "name": "express-rest",
+  "version": "1.0.0",
+  "description": "NodeJS - Express rest application",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon -i \"*.test.js\" server.js",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=7"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "rest"
+  ],
+  "author": "Alvaro Rago <alvaro.rago@tarmac.io>",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2",
+    "cors": "^2.8.4",
+    "dotenv-safe": "^6.0.0",
+    "express": "^4.16.3",
+    "lodash": "^4.17.10",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.1.0",
+    "eslint-config-strongloop": "^2.1.0",
+    "nodemon": "^1.18.1"
+  },
+  "nyc": {
+    "include": [
+      "app"
+    ],
+    "exclude": [
+      "app/Enums/**/*.js"
+    ],
+    "ignore-class-method": "methodToIgnore",
+    "cache": true,
+    "all": true,
+    "reporter": [
+      "text"
+    ],
+    "report-dir": "./coverage"
+  }
+}
