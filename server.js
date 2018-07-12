@@ -1,14 +1,10 @@
-const http = require('http');
 const express = require('./start/express');
 const routes = require('./start/routes');
-const { host, port, env, apiRoot } = require('./config/env');
-const Logger = require('./config/logger');
+const http = require('./start/http');
+const Env = require('./config/env');
 
-const app = express(apiRoot, routes);
-const server = http.createServer(app);
+const app = express(Env('API_ROOT'), routes);
 
-setImmediate(() => {
-  server.listen(port, host, () => {
-    Logger.info('Express server listening on http://%s:%d, in %s mode', host, port, env);
-  });
-});
+const port = Env('PORT');
+
+module.exports = http(app, port);

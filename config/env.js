@@ -1,37 +1,18 @@
 const path = require('path');
-const merge = require('lodash').merge;
+const dotenv = require('dotenv-safe');
+
+const NODE_ENV = process.env.NODE_ENV || 'development'; // always load development if no env are suplied
+const envFile = NODE_ENV === 'test' ? '../.env.test' : '../.env';
 
 /* istanbul ignore next */
-const requireProcessEnv = (name) => {
-  if (!process.env[name]) {
-    throw new Error('You must set the ' + name + ' environment variable');
+dotenv.load({
+  path: path.join(__dirname, envFile),
+});
+
+module.exports = function (key, defaultValue = null) {
+  if (typeof key !== 'string') {
+    throw new Error('The key must be a string!');
   }
-  return process.env[name];
+
+  return process.env[key] || defaultValue;
 };
-
-/* istanbul ignore next */
-if (process.env.NODE_ENV !== 'production') {
-  const dotenv = require('dotenv-safe');
-  dotenv.load({
-    path: path.join(__dirname, '../.env'),
-    sample: path.join(__dirname, '../.env.example'),
-  });
-}
-
-const config = {
-  all: {
-    env: process.env.NODE_ENV || 'development',
-    root: path.join(__dirname, '..'),
-    port: process.env.PORT || 9000,
-    host: process.env.HOST || '0.0.0.0',
-    apiRoot: process.env.API_ROOT || '',
-  },
-  test: { },
-  development: { },
-  production: {
-    host: process.env.HOST || undefined,
-    port: process.env.PORT || 8080,
-  },
-};
-
-module.exports = merge(config.all, config[config.all.env]);

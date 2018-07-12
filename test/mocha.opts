@@ -1,0 +1,6 @@
+--require test/setup/config
+--reporter spec 
+--bail 
+--check-leaks
+--recursive
+test/**/*.{spec,test}.js
